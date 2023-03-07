@@ -16,14 +16,17 @@ import java.sql.SQLException;
 public class ClientServlet extends HttpServlet {
 
 
-    private ClientDao clientDao;
-
-    public void init(){clientDao = new ClientDao();
-    }
-
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        ClientDao cld= new ClientDao();
-        CompteDao cmd = new CompteDao();
+        SessionFactory sf = HibernateUtil.getSessionFactory();
+        Session sesion = sf.getCurrentSession();
+        sesion.getTransaction().begin();
+
+        ClientDao cld= new ClientDao(sesion);
+        CompteDao cmd = new CompteDao(sesion);
+
+
+
+
 
         String nomCuenta= request.getParameter("cuenta");
         int ingresI= Integer.parseInt(request.getParameter("ingresI"));
@@ -77,10 +80,8 @@ public class ClientServlet extends HttpServlet {
             /*si existe el cliente pero no la cuenta*/
 //            cmd.saveCompte(compte);
             cld.saveUser(cli);
-            cmd.saveCompte(compte);
-
-
-
+//            cmd.saveCompte(compte);
+            cmd.insertCuenta(cli, compte.getIban(), (int) compte.getSaldo());
 
             response.setContentType("text/html");
             PrintWriter out = response.getWriter();
@@ -95,7 +96,7 @@ public class ClientServlet extends HttpServlet {
         }
 
 
-
+        sesion.getTransaction().commit();
     }
 
 

@@ -10,8 +10,9 @@
     <title>JSP - Hello World</title>
 </head>
 <body>
-<form action="formusuarios" method="post">
 <table style="width:90%">
+    <form action="formusuarios" method="post">
+
     <tr>
         <th style="width: 20%">  <label for="nom">Nombre Cliente:</label></th>
         <td>  <input type="text" id="nom" name="nom" value=""></td>
@@ -47,13 +48,43 @@
     <tr>
         <th colspan="2">  <button class="submit" type="submit" value="Submit" name="create">Create</button></th>
     </tr>
+    </form>
+
+
+
+</table>
+
+<br>
+<table>
+    <form action="buscarusuarios" method="post">
+    <tr>
+        <th style="width: 20%">  <label for="dnibuscar">DNI</label></th>
+        <td>  <input type="text" id="dnibuscar" name="dnibuscar" value=""></td>
+    </tr>
+    <tr>
+        <th colspan="2">  <button class="submit" type="submit" value="Submit" name="mostrarusuarios">Mostrar client i les seves comptes</button></th>
+    </tr>
+    </form>
+</table>
+
+    <br>
+<table>
+    <form action="buscarcuentas" method="post">
+    <tr>
+        <th style="width: 20%">  <label for="ibanbuscar">IBAN</label></th>
+        <td>  <input type="text" id="ibanbuscar" name="ibanbuscar" value=""></td>
+    </tr>
+    <tr>
+        <th colspan="2">  <button class="submit" type="submit" value="Submit" name="mostrarusuarios">mostra compte i el seu usuari</button></th>
+    </tr>
+    </form>
+</table>
+
 
 <%--    <tr>--%>
 <%--        <th colspan="2">  <input type="submit" id="mostrarC" value="Mostrar clientes"> </th>--%>
 <%--    </tr>--%>
 
 
-</table>
-</form>
 </body>
 </html>
