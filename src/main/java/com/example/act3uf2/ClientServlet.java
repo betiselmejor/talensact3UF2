@@ -79,9 +79,9 @@ public class ClientServlet extends HttpServlet {
         }else if (cld.checkUser(cli)==true && cmd.checkCompte(compte)==false){
             /*si existe el cliente pero no la cuenta*/
 //            cmd.saveCompte(compte);
-            cld.saveUser(cli);
+           Clients client2= cld.returnClientByDni(dni);
 //            cmd.saveCompte(compte);
-            cmd.insertCuenta(cli, compte.getIban(), (int) compte.getSaldo());
+            cmd.insertCuenta(client2, compte.getIban(), (int) compte.getSaldo());
 
             response.setContentType("text/html");
             PrintWriter out = response.getWriter();
